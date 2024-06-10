@@ -17,7 +17,7 @@ environment {
        stage('build image'){
                 steps{
                 sh 'pwd'
-                sd 'cd chocolux'
+                sh 'cd chocolux'
                 sh 'pwd'
                 sh 'docker build -t junaid1976/chocolux -f /var/lib/jenkins/workspace/chocolux_production_deployment/chocolux'
                 echo 'chocolux image is build'
