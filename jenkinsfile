@@ -19,7 +19,7 @@ environment {
                 sh 'pwd'
                 sh 'cd chocolux'
                 sh 'pwd'
-                sh 'docker build -t junaid1976/chocolux -f /var/lib/jenkins/workspace/chocolux_production_deployment/chocolux'
+                sh 'docker build -t junaid1976/chocolux .'
                 echo 'chocolux image is build'
         }
     }
