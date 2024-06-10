@@ -6,7 +6,7 @@ evvironment {
 
     stages {
 
-        stage('checkout-pullingcode-github')
+        stage('checkout-pullingcode-github'){
             steps {
                 sh 'sudo rm -rf /var/lib/jenkins/workspace/chocolux_production_deployment/chocolux'
                 sh 'pwd'
@@ -14,21 +14,21 @@ evvironment {
             }
     }
 
-    stage('build image'){
-        steps{
-            sh 'pwd'
-            sd 'cd chocolux'
-            sh 'pwd'
-            sh 'docker build -t junaid1976/chocolux -f /var/lib/jenkins/workspace/chocolux_production_deployment/chocolux'
-            echo 'chocolux image is build'
+       stage('build image'){
+                steps{
+                sh 'pwd'
+                sd 'cd chocolux'
+                sh 'pwd'
+                sh 'docker build -t junaid1976/chocolux -f /var/lib/jenkins/workspace/chocolux_production_deployment/chocolux'
+                echo 'chocolux image is build'
         }
     }
     
-    stage('docker Login'){
+        stage('docker Login'){
         steps {
             sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR -- password-stdin'
         }
-    }
+        }
 
     stage('Docker Push'){
         steps {
@@ -46,4 +46,5 @@ evvironment {
             sh 'docker run -d --name chocoluxcont -p 80:80 junaid1976/chocolux'
         }
     }
+}
 }
